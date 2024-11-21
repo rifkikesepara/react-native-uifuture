@@ -1,30 +1,33 @@
-import { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-uifuture';
+import { Button } from 'react-native-paper';
+import { Accordion, Stack, TextField } from 'react-native-uifuture';
 
 export default function App() {
-  const [result, setResult] = useState<number | undefined>();
-
-  useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
-
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <Stack
+      direction="column"
+      alignItems="center"
+      justifyContent="center"
+      style={{ paddingTop: 10 }}
+      spacing={20}
+    >
+      <Stack width="75%">
+        <Accordion title="test" elevation={2}>
+          <Stack width="100%">
+            <Stack
+              direction="column"
+              alignItems="center"
+              justifyContent="center"
+              spacing={8}
+            >
+              <TextField label="Name" />
+
+              <Button mode="contained" style={{ width: '100%' }}>
+                Add User
+              </Button>
+            </Stack>
+          </Stack>
+        </Accordion>
+      </Stack>
+    </Stack>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
-  },
-});

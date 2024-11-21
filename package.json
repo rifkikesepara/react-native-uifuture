@@ -1,6 +1,6 @@
 {
   "name": "react-native-uifuture",
-  "version": "0.1.0",
+  "version": "0.1.12",
   "description": "Material Design UI Component Lib",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
@@ -183,5 +183,15 @@
     "languages": "js",
     "type": "library",
     "version": "0.44.1"
+  },
+  "dependencies": {
+    "react-native-gesture-handler": "^2.21.2",
+    "react-native-paper": "^5.12.5",
+    "react-native-reanimated": "^3.16.1",
+    "react-native-safe-area-context": "^4.14.0",
+    "react-native-safe-area-view": "^2.0.0",
+    "react-native-screens": "^4.2.0",
+    "react-native-svg": "^15.9.0",
+    "react-native-vector-icons": "^10.2.0"
   }
 }
