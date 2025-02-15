@@ -1,5 +1,6 @@
 import { Platform, Pressable, StyleSheet, Text, View } from 'react-native';
 import Animated, {
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
@@ -15,9 +16,10 @@ const Accordion = ({
   style,
   duration = 500,
   elevation = 2,
+  TransitionProps,
 }: AccordionProps) => {
   const height = useSharedValue(0);
-  const opened = useSharedValue(false);
+  const opened = useSharedValue(null);
   const isExpanded = expanded ? expanded : opened;
 
   const bodyStyle = useAnimatedStyle(() => ({
@@ -28,9 +30,22 @@ const Accordion = ({
   }));
 
   const titleStyle = useAnimatedStyle(() => ({
-    borderBottomLeftRadius: withTiming(isExpanded.get() ? 0 : 10, {
-      duration: duration + 100,
-    }),
+    borderBottomLeftRadius: withTiming(
+      isExpanded.get() ? 0 : 10,
+      {
+        duration: duration + 100,
+      },
+      (finished) => {
+        if (isExpanded.get() !== null) {
+          if (isExpanded.get() && finished) {
+            if (TransitionProps?.onEntered)
+              runOnJS(TransitionProps?.onEntered)();
+          } else {
+            if (TransitionProps?.onExited) runOnJS(TransitionProps?.onExited)();
+          }
+        }
+      }
+    ),
     borderBottomRightRadius: withTiming(isExpanded.get() ? 0 : 10, {
       duration: duration + 100,
     }),
@@ -43,6 +58,12 @@ const Accordion = ({
       },
     ],
   }));
+
+  const handleTitleClick = () => {
+    isExpanded.value = !isExpanded.value;
+    if (isExpanded.get()) TransitionProps?.onExiting?.();
+    else TransitionProps?.onEntering?.();
+  };
 
   return (
     <Stack
@@ -58,10 +79,7 @@ const Accordion = ({
       ]}
     >
       {title ? (
-        <Pressable
-          style={{ width: '100%' }}
-          onPress={() => (isExpanded.value = !isExpanded.value)}
-        >
+        <Pressable style={{ width: '100%' }} onPress={handleTitleClick}>
           <Animated.View
             style={[
               {

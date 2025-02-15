@@ -5,7 +5,7 @@ import type {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import type { TextInputProps } from 'react-native-paper';
+import type { DataTableCellProps, TextInputProps } from 'react-native-paper';
 import type { SharedValue } from 'react-native-reanimated';
 
 interface StackProps {
@@ -41,6 +41,40 @@ interface AccordionProps extends StackProps {
   viewKey?: number;
   duration?: number;
   elevation?: number;
+  TransitionProps?: TransitionProps;
 }
 
-export type { StackProps, TextFieldProps, AccordionProps };
+interface TransitionProps {
+  onEntering?: () => void;
+  onExiting?: () => void;
+  onEntered?: () => void;
+  onExited?: () => void;
+}
+interface TableProps {
+  columns: Array<ColumnProps>;
+  rows: Array<{ [key: string]: any | undefined }>;
+}
+
+interface ColumnProps {
+  header: string;
+  Cell?: React.ReactNode;
+}
+
+interface SelectProps {
+  menuItems: Array<MenuItems>;
+  onChange?: (value: String) => void;
+  width?: DimensionValue;
+}
+
+interface MenuItems {
+  label: String;
+  value: String | number | null;
+}
+
+export type {
+  StackProps,
+  TextFieldProps,
+  AccordionProps,
+  TableProps,
+  SelectProps,
+};

@@ -1,33 +1,32 @@
-import { Button } from 'react-native-paper';
-import { Accordion, Stack, TextField } from 'react-native-uifuture';
+import {
+  PaperProvider,
+  MD3LightTheme as DefaultTheme,
+} from 'react-native-paper';
+import { Select, Stack } from 'react-native-uifuture';
 
 export default function App() {
   return (
-    <Stack
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      style={{ paddingTop: 10 }}
-      spacing={20}
-    >
-      <Stack width="75%">
-        <Accordion title="test" elevation={2}>
-          <Stack width="100%">
-            <Stack
-              direction="column"
-              alignItems="center"
-              justifyContent="center"
-              spacing={8}
-            >
-              <TextField label="Name" />
-
-              <Button mode="contained" style={{ width: '100%' }}>
-                Add User
-              </Button>
-            </Stack>
-          </Stack>
-        </Accordion>
+    <PaperProvider theme={DefaultTheme}>
+      <Stack
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        style={{ paddingTop: 50, backgroundColor: 'white' }}
+        spacing={20}
+      >
+        <Select
+          width={'80%'}
+          menuItems={[
+            {
+              label: 'Testttttttttttttttttttttttttttttttttttttttt',
+              value: 'Test',
+            },
+            { label: 'Zafer', value: 'Test' },
+            { label: 'Sevdiye', value: 'Test' },
+            { label: 'Rıfkı', value: 'Test' },
+          ]}
+        />
       </Stack>
-    </Stack>
+    </PaperProvider>
   );
 }
