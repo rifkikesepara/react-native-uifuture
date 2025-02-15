@@ -5,7 +5,7 @@ import type {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import type { DataTableCellProps, TextInputProps } from 'react-native-paper';
+import type { TextInputProps } from 'react-native-paper';
 import type { SharedValue } from 'react-native-reanimated';
 
 interface StackProps {
