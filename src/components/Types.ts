@@ -51,8 +51,8 @@ interface TransitionProps {
   onExited?: () => void;
 }
 interface TableProps {
-  columns: Array<ColumnProps>;
-  rows: Array<{ [key: string]: any | undefined }>;
+  columns: ColumnProps[];
+  rows: { [key: string]: any | undefined }[];
 }
 
 interface ColumnProps {
@@ -61,20 +61,17 @@ interface ColumnProps {
 }
 
 interface SelectProps {
-  menuItems: Array<MenuItems>;
-  onChange?: (value: String) => void;
+  menuItems: MenuItems[];
+  onChange?: (value: string) => void;
   width?: DimensionValue;
 }
 
 interface MenuItems {
-  label: String;
-  value: String | number | null;
+  label: string;
+  value: string ;
 }
 
 export type {
-  StackProps,
-  TextFieldProps,
-  AccordionProps,
-  TableProps,
-  SelectProps,
+  AccordionProps, SelectProps, StackProps, TableProps, TextFieldProps
 };
+

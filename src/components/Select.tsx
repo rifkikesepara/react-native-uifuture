@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
+import { Platform } from 'react-native';
 import { Button, Menu } from 'react-native-paper';
-import type { SelectProps } from './Types';
 import Animated, {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
 import Stack from './Stack';
-import { Platform } from 'react-native';
+import type { SelectProps } from './Types';
 
 const Select = ({
   menuItems,
@@ -14,7 +14,7 @@ const Select = ({
   width = 200,
 }: SelectProps) => {
   const [showMenu, setShowMenu] = useState(false);
-  const [selected, setSelected] = useState<String>('Select an Item');
+  const [selected, setSelected] = useState<string>('Select an Item');
 
   useEffect(() => {
     onChange(selected);
@@ -39,7 +39,6 @@ const Select = ({
         <Stack alignItems="center" style={{ position: 'relative' }}>
           <Animated.Text
             style={[
-              // eslint-disable-next-line react-native/no-inline-styles
               {
                 color: 'black',
                 fontWeight: 'bold',
